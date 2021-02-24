@@ -1,0 +1,1 @@
+[{"_id":{"$oid":"60360252d2fc347504bd2027"},"nombre":"Luz"},{"_id":{"$oid":"60360252d2fc347504bd2028"},"nombre":"Agua"},{"_id":{"$oid":"60360252d2fc347504bd2029"},"nombre":"Telefono"},{"_id":{"$oid":"60360252d2fc347504bd202a"},"nombre":"Cable"},{"_id":{"$oid":"60360252d2fc347504bd202b"},"nombre":"Gas"},{"_id":{"$oid":"60360252d2fc347504bd202c"},"nombre":"Internet"}]
