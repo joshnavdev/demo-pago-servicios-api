@@ -2,12 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const categoria = require("./controllers/categoria.controller");
-<<<<<<< HEAD
 const empresa = require("./controllers/empresa.controller");
-=======
 const usuario = require("./controllers/usuarios.controller");
 const cuenta = require("./controllers/cuenta.controller");
->>>>>>> e1614f5084d2046b8a4c4a2becc479fd2c1fe07d
+const factura = require("./controllers/factura.controller");
 
 // configuramos el router
 router.get("/", (req, res) => {
@@ -20,12 +18,10 @@ router.get("/", (req, res) => {
 router.get("/categorias", categoria.list);
 router.post("/categorias", categoria.create);
 router.get("/categorias/:id/empresas", categoria.listEmpresas);
-<<<<<<< HEAD
 router.get("/empresas/:id/recibos", empresa.listRecibos);
-=======
 router.get("/usuarios", usuario.listUsuario);
 router.get("/usuarios/:id/cuentas", cuenta.listcuenta);
->>>>>>> e1614f5084d2046b8a4c4a2becc479fd2c1fe07d
+router.post("/facturas", factura.createFactura);
 
 // exportamos
 module.exports = router;
