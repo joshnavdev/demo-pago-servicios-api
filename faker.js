@@ -61,18 +61,21 @@ exports.createData = async (req, res) => {
       (old = "#") => old + "#"
     );
 
-    Array.from({ length: number }).forEach((_, idx) => {
+    const recibosNumber = faker.random.number({ min: 2, max: 3 });
+    Array.from({ length: recibosNumber }).forEach(() => {
       const codigo = faker.phone.phoneNumber(format);
 
-      const recibo = {
-        _id: createId(),
-        codigo,
-        monto: faker.random.float({ min: 100, max: 1000, precision: 0.01 }),
-        fecha_expiracion: getDateFromNow(idx * -1),
-        empresa_id: empresa._id,
-      };
+      Array.from({ length: number }).forEach((_, idx) => {
+        const recibo = {
+          _id: createId(),
+          codigo,
+          monto: faker.random.float({ min: 100, max: 1000, precision: 0.01 }),
+          fecha_expiracion: getDateFromNow(idx * -1),
+          empresa_id: empresa._id,
+        };
 
-      recibosDB.push(recibo);
+        recibosDB.push(recibo);
+      });
     });
   });
 
