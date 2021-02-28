@@ -28,10 +28,12 @@ app.use(bodyParser.json());
 
 app.use(router);
 
-const fakeData = require("./faker");
+// const fakeData = require("./faker");
 
-app.post("/llenarDatabase", fakeData.createData);
+// app.post("/llenarDatabase", fakeData.createData);
 
-app.listen(8000, () => {
-  console.log("Conectado!");
+const port = process.env.PORT || 8000;
+
+app.listen(port, () => {
+  console.log(`Escuchando en el puerto ${port}`);
 });
