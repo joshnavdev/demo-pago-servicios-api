@@ -1,14 +1,17 @@
 const mongoose = require("mongoose");
 const faker = require("faker");
 const fs = require("fs");
+const Categoria = require("./models/categoria.model");
+const Empresa = require("./models/empresa.model");
+const Recibo = require("./models/recibo.model");
+const Usuario = require("./models/usuario.model");
+const Cuenta = require("./models/cuenta.model");
 
 Array.prototype.sample = function () {
   return this[Math.floor(Math.random() * this.length)];
 };
 
-const createId = () => ({
-  $oid: mongoose.Types.ObjectId(),
-});
+const createId = () => mongoose.Types.ObjectId();
 
 const getDateFromNow = (months) => {
   const date = new Date();
@@ -30,9 +33,10 @@ const writeJSON = (data, name) => {
 
 exports.createData = async (req, res) => {
   faker.seed(133);
+  // ['valor'] -> [{name: 'valor', id: '23423' }]
 
   const categorias = ["Luz", "Agua", "Telefono", "Cable", "Gas", "Internet"];
-
+  // map me devuelve un array, forEach uso array.push()
   const categoriasDB = categorias.map((categoria) => ({
     _id: createId(),
     nombre: categoria,
@@ -104,11 +108,23 @@ exports.createData = async (req, res) => {
     });
   });
 
-  await writeJSON(categoriasDB, "categorias");
-  await writeJSON(empresasDB, "empresas");
-  await writeJSON(recibosDB, "recibos");
-  await writeJSON(usuariosDB, "usuarios");
-  await writeJSON(cuentasDB, "cuentas");
+  await Categoria.collection.drop();
+  await Categoria.insertMany(categoriasDB);
 
-  res.json(categoriasDB);
+  await Empresa.collection.drop();
+  await Empresa.insertMany(empresasDB);
+  await Recibo.collection.drop();
+  await Recibo.insertMany(recibosDB);
+  await Usuario.collection.drop();
+  await Usuario.insertMany(usuariosDB);
+  await Cuenta.collection.drop();
+  await Cuenta.insertMany(cuentasDB);
+
+  // await writeJSON(categoriasDB, "categorias");
+  // await writeJSON(empresasDB, "empresas");
+  // await writeJSON(recibosDB, "recibos");
+  // await writeJSON(usuariosDB, "usuarios");
+  // await writeJSON(cuentasDB, "cuentas");
+
+  res.json(null);
 };
