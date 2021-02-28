@@ -14,18 +14,20 @@ const listRecibos = async (req, res) => {
     const query = { empresa_id: id };
 
     if (codigo) {
-      console.log(codigo);
       query.codigo = codigo;
     }
 
-    const recibos = await recibo.find(query).populate("factura_id");
+    const recibos = await recibo.find(query);
 
-    // const response = recibos.map((recibo) => {
-    //   return {
-    //     ...recibo._doc,
-    //     paid: recibo.factura_id !== null,
-    //   };
-    // });
+    let response = recibos;
+
+    if (pagado) {
+      const flag = pagado === "1";
+      response = recibos.filter((recibo) => {
+        console.log(recibo.pagado, flag);
+        return recibo.pagado === flag;
+      });
+    }
 
     return res.json(response);
   } catch (error) {

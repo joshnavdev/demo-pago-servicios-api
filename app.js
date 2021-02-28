@@ -8,6 +8,8 @@ const app = express();
 const url =
   "mongodb+srv://joshua:carlospunk@demo-pago-servicios.zrh2f.mongodb.net/pago_servicios?authSource=admin&replicaSet=atlas-41un6i-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true";
 
+mongoose.set("debug", true);
+
 mongoose
   .connect(url)
   .then(() => {
