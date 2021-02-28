@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const cuentaSchema = new Schema({
   numero: { type: String, unique: true },
   tipo: String,
-  monto: String,
+  monto: Number,
   usuario_id: {
     type: Schema.Types.ObjectId,
     ref: "usuarios",
