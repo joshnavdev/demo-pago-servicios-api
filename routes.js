@@ -20,6 +20,7 @@ router.post("/categorias", categoria.create);
 router.get("/categorias/:id/empresas", categoria.listEmpresas);
 router.get("/empresas/:id/recibos", empresa.listRecibos);
 router.get("/usuarios", usuario.listUsuario);
+router.post("/usuarios/login", usuario.login);
 router.get("/usuarios/:id/cuentas", cuenta.listcuenta);
 router.post("/facturas", factura.createFactura);
 
